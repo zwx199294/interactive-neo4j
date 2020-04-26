@@ -1,0 +1,42 @@
+.div_body{
+	width: 100%;
+	background-color:#F1F1F1;
+}
+.div_nai{
+	line-height: 40px;
+	font-family: PingFangSC-Semibold;
+	font-size: 14px;
+	color: #666;
+}
+.div_nai a{
+	color: #666;
+	text-decoration:none;
+}
+.div_nai a:HOVER{
+	color: #3b71f2;
+}
+.div_inline{
+	display: inline-block;
+	width: 184px;
+	line-height: 60px;
+	text-align: center;
+}
+.div_inline .title{
+	background-color:#FFF;
+	line-height: 60px;
+	margin-top: 20px;
+	border-radius:5px;
+}
+.div_inline .title .text{
+	display:inline-block;
+	font-family: PingFangSC-Semibold;
+	font-size: 18px;
+	color: #666;
+}
+.div_inline:HOVER .title,.div_inline:HOVER .title>.text{
+	background-color:#3b71f2;
+	color: #FFF;
+}
+.div_list{
+	margin-top: 10px;
+}

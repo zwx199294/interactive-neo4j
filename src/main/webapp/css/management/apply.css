@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+.div_navigator {
+	line-height: 40px;
+	font-family: PingFangSC-Semibold;
+	font-size: 14px;
+	color: #666;
+	margin-top: 300px;
+}
+
+.div_navigator a {
+	color: #666;
+	text-decoration: none;
+}
+
+.div_navigator a:HOVER {
+	color: #3b71f2;
+}

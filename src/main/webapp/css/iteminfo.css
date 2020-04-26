@@ -1,0 +1,135 @@
+.div_body{
+	width: 100%;
+	background-color:#F1F1F1;
+}
+.div_nai{
+	line-height: 40px;
+	font-family: PingFangSC-Semibold;
+	font-size: 14px;
+	color: #666;
+}
+.div_nai a{
+	color: #666;
+	text-decoration:none;
+}
+.div_nai a:HOVER{
+	color: #3b71f2;
+}
+.content{
+	width: 100%;
+	line-height: 100px;
+	text-align: center;
+}
+.content_title{
+	background-color: #3b71f2;
+	height: 50px;
+	line-height: 50px;
+}
+.content_title .text{
+    color: #FFF;
+    width: 800px;
+    text-align: center;
+    font-family: PingFangSC-Semibold;
+	font-size: 16px;
+	margin: 0 auto;
+}
+.content_title .reback{
+    float: right;
+	font-family: PingFangSC-Semibold;
+	font-size: 14px;
+	color: #FFF;
+	margin-top: 10px;
+	margin-right: 20px;
+	border-radius:5px;
+	border:1px solid #FFF;
+	width: 70px;
+	line-height: 30px;
+	text-align: center;
+	text-decoration:none;
+}
+.content_title .reback:HOVER{
+	background-color: #FFF;
+	color: #5A3FE6;
+	cursor:pointer;
+}
+.content_table{
+	width: 100%;
+    margin-bottom: 10px;
+    display: table;
+    border-collapse: separate;
+    border:solid rgba(0,0,0,0.08); 
+    border-width:1px 0px 0px 1px;
+}
+.content_table tbody{
+	display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.content_table tr{
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.content_table th{
+    line-height: 30px;
+    color: #666;
+    font-weight: bold;
+    background-color: #F4F4F4;    
+    font-family: PingFangSC-Semibold;
+	font-size: 14px;
+}
+.content_table td{
+    line-height: 30px;
+    color: #666;
+    background-color: #FFF;    
+    font-family: PingFangSC-Regular;
+	font-size: 14px;
+	border:solid #F4F4F4; 
+	border-width:0px 1px 1px 0px;
+	text-align: center;
+}
+.content_table td a{
+	color: #4773B1;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	text-decoration:none;
+}
+.content_table td a:HOVER{
+	color: #3b71f2;
+}
+.content_table .td_l{
+	width: 20%;
+	font-weight: bold;
+}
+.content_table .td_r{
+	text-align: left;
+}
+.content_table .td_r ul li{
+	list-style: none;
+}
+.content_table .td_r ul li a{
+	color: #666;
+}
+.content_table .td_r ul li a:HOVER{
+	color: #666;
+	text-decoration:underline;
+}
+.but{
+	display:inline-block;
+	font-family: PingFangSC-Semibold;
+	font-size: 12px;
+	color: #FFF;
+	border-radius:5px;
+	border:1px solid #FFF;
+	width: 90px;
+	line-height: 25px;
+	text-align: center;
+	text-decoration:none;
+	float: right;
+    margin-top: -40px;
+    margin-right: 20px;
+}
+.but:HOVER {
+	background-color: #FFF;
+	color: #5A3FE6;
+}

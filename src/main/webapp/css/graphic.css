@@ -1,0 +1,63 @@
+[v-cloak] {
+	display: none;
+}
+
+.body {
+	margin: 0;
+	padding: 0;
+}
+
+.bottom {
+	background-color: #263c6e;
+	height: 150px;
+	font-family: MicrosoftYaHei;
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 24px;
+	letter-spacing: 0px;
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+}
+
+.inner-link {
+	margin-top: 5%;
+}
+
+.inner-text {
+	margin-top: 6%;
+	margin-left: 10%;
+}
+
+.inner-left {
+	float: left;
+}
+
+.el-main {
+	padding: 0;
+	overflow: hidden;
+}
+
+.el-header {
+	padding: 0;
+	margin: 10px auto;
+}
+
+.header-top {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.header_logo {
+	float: left;
+}
+
+.container {
+	margin: 0 auto;
+}
+
+.main-content {
+	width: 70%;
+	margin: 0 auto;
+}

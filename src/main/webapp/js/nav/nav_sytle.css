@@ -1,0 +1,236 @@
+.rightNav {
+	width: 35%;
+	height: 50%;
+	right: 0px;
+	float: right;
+	padding-right: 10px;
+	position: relative;
+}
+
+.sidebar {
+	float: left;
+	width: 40px;
+	color: #f4f4f4;
+	background-color: rgba(0, 0, 0, 0);
+	height: 100%;
+	position: relative;
+}
+
+.child {
+	background-color: #265D9F;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 100px;
+	margin: auto;
+}
+
+.main {
+	background-color: #eee;
+	width: 100%;
+	border-radius: 10px;
+}
+
+.border {
+	border: 1px solid #ddd;
+}
+
+.m-message {
+	padding: 0px 15px 10px;
+	overflow-y: scroll;
+	height: 25pc;
+}
+
+.m-message ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.m-message .avatar {
+	float: left;
+	margin: 0 10px 0 0;
+	border-radius: 3px;
+}
+
+.m-message .text {
+	display: inline-block;
+	position: relative;
+	padding: 0 10px;
+	max-width: calc(100% -                 40px);
+	min-height: 30px;
+	line-height: 2.5;
+	font-size: 10pt;
+	text-align: left;
+	word-break: break-all;
+	background-color: #fafafa;
+	border-radius: 4px;
+}
+
+.m-message .text:before {
+	content: " ";
+	position: absolute;
+	top: 9px;
+	right: 100%;
+	border: 6px solid transparent;
+	border-right-color: #fafafa;
+}
+
+.m-message .self {
+	text-align: right;
+}
+
+.m-message .self .text {
+	background-color: #265D9F;
+	color: #FFF;
+}
+
+.m-message .self .avatar {
+	float: right;
+	margin: 0 0 0 10px;
+}
+
+.m-message .self .text:before {
+	right: inherit;
+	left: 100%;
+	border-right-color: transparent;
+	border-left-color: #265D9F;
+}
+
+*,*:before,*:after {
+	box-sizing: border-box;
+}
+
+.m-message .time {
+	margin: 7px 0;
+	text-align: center;
+}
+
+.m-message li {
+	margin-bottom: 15px;
+}
+
+.m-text { /* position: absolute; */
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	height: 3pc;
+	background-color: #fff;
+	border-radius: 0 0 10px 10px;
+	border-top: 1px solid #ddd;
+	padding: 10px;
+}
+
+.m-text textarea {
+	padding: 10px;
+	height: calc(100% -                 42px);
+	width: 100%;
+	border: none;
+	outline: 0;
+	font-family: Micrsofot Yahei;
+	resize: none;
+}
+
+.sendBtn {
+	float: right;
+	width: 15%;
+}
+
+.g-man {
+	font-size: 14px;
+	margin: 7px 0 0 40px;
+	height: 30px;
+	color: #a4a2a2;
+}
+
+.g-man span {
+	float: left;
+	color: #777;
+	margin-right: 10px;
+}
+
+.g-man1 {
+	color: #777;
+	cursor: pointer;
+	float: left;
+	margin-right: 10px;
+}
+
+.g-man2 {
+	color: #777;
+	cursor: pointer;
+	float: left;
+	margin-right: 10px;
+}
+
+.g-man3 {
+	color: #777;
+	cursor: pointer;
+	float: left;
+}
+
+.g-man1 span {
+	background: url(../../imgs/scjg/good-a.png) no-repeat left center;
+	width: 23px;
+	height: 20px;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.g-man2 span {
+	background: url(../../imgs/scjg/good1-a.png) no-repeat left center;
+	width: 23px;
+	height: 20px;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.g-man3 i {
+	font-size: 16px;
+	margin-right: 2px;
+}
+
+.ask_me {
+	border-bottom: 1px dashed #CCC;
+	margin-bottom: 10px;
+}
+
+.text h2 {
+	color: #333;
+	font-size: 14px;
+	font-family: "Microsoft YaHei";
+	line-height: 25px;
+	font-weight: normal;
+}
+
+.fontNum {
+	padding-left: 10px;
+	color: #7e7d7d;
+	font-size: 12px;
+	float: left;
+}
+
+.number {
+	color: #333;
+}
+
+.smart_qa {
+	position: fixed;
+	right: -50px;
+	top: 50%;
+	margin-top: -80px;
+	background-color: #255d9e;
+}
+
+.smart_qa a {
+    width: 50px;
+    height: 160px;
+    text-align: center;
+    padding: 0px 0px;
+    line-height: 40px;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+}

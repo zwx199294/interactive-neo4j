@@ -1,0 +1,40 @@
+{"nodes":[
+	   {"data":{"id":1,"label":"办理营业执照","type":"E"}},
+	   {"data":{"id":2,"label":"印章刻制申请","type":"E"}},
+	   {"data":{"id":3,"label":"税务发票申领","type":"E"}},
+	   {"data":{"id":4,"label":"人社参保登记","type":"E"}},
+	   {"data":{"id":5,"label":"企业银行开户","type":"E"}},
+	   {"data":{"id":6,"label":"后置许可或备案","type":"O"}},
+	   {"data":{"id":7,"label":"职业中介服务许可","type":"E"}},
+	   {"data":{"id":8,"label":"设置大型户外广告及\n在城市建筑物、设施上\n悬挂、张贴宣传物品审批","type":"E"}},
+	   {"data":{"id":9,"label":"建设工程消防设计\n审核或备案","type":"E"}},
+	   {"data":{"id":10,"label":"建设工程竣工消防\n验收或备案","type":"E"}},
+	   {"data":{"id":11,"label":"办理完成","type":"P"}}
+	],
+	"edges":[
+		{"data":{"relationship":"","source":1,"target":2}},
+		{"data":{"relationship":"","source":1,"target":3}},
+		{"data":{"relationship":"","source":1,"target":4}},
+		{"data":{"relationship":"","source":1,"target":5}},
+
+		{"data":{"relationship":"","source":2,"target":6}},
+		{"data":{"relationship":"","source":3,"target":6}},
+		{"data":{"relationship":"","source":4,"target":6}},
+		{"data":{"relationship":"","source":5,"target":6}},
+
+		{"data":{"relationship":"","source":6,"target":7}},
+		{"data":{"relationship":"","source":6,"target":8}},
+		{"data":{"relationship":"","source":6,"target":9}},
+		{"data":{"relationship":"","source":6,"target":10}},
+
+
+
+
+		{"data":{"relationship":"","source":7,"target":11}},
+		{"data":{"relationship":"","source":8,"target":11}},
+		{"data":{"relationship":"","source":9,"target":11}},
+		{"data":{"relationship":"","source":10,"target":11}}
+
+
+	]
+}

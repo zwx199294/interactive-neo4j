@@ -1,0 +1,276 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>GraphNavigator DEMO</title>
+<script type="text/javascript"
+	src="/js/interactivegraph/interactive-graph-yjsycb.min.js"></script>
+<link type="text/css" rel="stylesheet"
+	href="/css/interactivegraph/interactive-graph-yjsycb.min.css">
+<script src="/js/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="/css/jquery-ui.css">
+<script src="/js/jquery-ui.js"></script>
+<link href="/css/interactivegraph/font-awesome.min.css" rel="stylesheet">
+<link href="/css/interactivegraph/style.css" rel="stylesheet">
+<script src="/js/vue.js"></script>
+<script src="/js/element-ui/lib/index.js"></script>
+<link rel="stylesheet" href="/js/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" href="/css/themeService.css">
+<script src="/js/interactivegraph/neo4j-datasource.js"></script>
+<script src="/js/interactivegraph/neo4j-query-history.js"></script>
+<style type="text/css">
+body {
+	margin: 0px;
+	font-size: 14px;
+}
+
+#graphArea {
+	height: 100%;
+	border: 1px solid lightgray;
+}
+
+.button.green {
+	box-shadow: 0 1px 2px #b9ecc4 inset, 0 -1px 0 #6c9f76 inset, 0 -2px 3px
+		#b9ecc4 inset;
+	background: -webkit-linear-gradient(top, #90dfa2, #84d494);
+	background: -moz-linear-gradient(top, #90dfa2, #84d494);
+	background: linear-gradient(top, #90dfa2, #84d494);
+}
+
+.button.green:active {
+	padding: 3px6px2px8px;
+	border: 2px inset;
+	cursor: pointer;
+	background-color: #d4d0c8;
+	text-align: center;
+	height: 12px;
+	text-decoration: none;
+	color: #999999;
+	display: inline-block;
+	clear: both;
+}
+
+.green:hover {
+	background: -webkit-linear-gradient(top, #aaebb9, #82d392);
+	background: -moz-linear-gradient(top, #aaebb9, #82d392);
+	background: linear-gradient(top, #aaebb9, #82d392);
+}
+
+input {
+	border-width: thin;
+}
+
+/*历史记录框*/
+.search-history {
+	border: 1px solid #999999;
+	width: 98%;
+	z-index: 999;
+	background: white;
+	color: #6f6f6d;
+	overflow: auto;
+	overflow-x: hidden;
+	position: absolute;
+}
+
+.search-history .delete-ul li:hover {
+	cursor: pointer;
+	color: grey;
+	text-decoration:underline;
+}
+
+.search-history .content-ul li {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.search-history .content-ul li:hover {
+	cursor: pointer;
+	background: #E1E5E5;
+}
+
+.search-history .content-ul li.hover {
+	cursor: pointer;
+	background: #E1E5E5;
+}
+
+</style>
+
+</head>
+
+<body>
+	<div style="height: 100%">
+		<div id="graphArea"></div>
+	</div>
+	<!--all UI controls-->
+	<div id="app">
+		<!--toolbar-->
+		<div class="toolbarPanel igraph-dockable igraph-draggable"
+			igraph-control-role="ToolbarCtrl" igraph-dock-position="B:-6,0"
+			style="width: 500px">
+			<div id="queryDiv" class="queryDiv">
+				<textarea class="queryInput" type=" text" v-model="searchInput"
+					@clear="searchClean" @keyup.enter.native="searchThis" clearable
+					placeholder="填写neo4j查询语句" style="width: 100%; height: 50px"></textarea>
+			</div>
+			<!-- search-history 查询历史层 -->
+			<div class="search-history">
+				<ul class="content-ul" style="margin: 0; width: 90%; float: left">
+				</ul>
+				<ul class="delete-ul" style="margin: 0; width: 10%; float: left">
+				</ul>
+			</div>
+
+
+			<div class="toolbar"></div>
+		</div>
+		<!--info box-->
+		<div class="infoPanel igraph-dockable igraph-draggable"
+			igraph-control-role="InfoBoxCtrl" igraph-dock-position="A:10,200">
+			<div>
+				<div class="infoPanel1"></div>
+				<div class="infoPanel2">
+					<span align="center" class="fa fa-close fa-lg btnCloseInfoPanel"></span>
+				</div>
+			</div>
+			<div class="infoBox"></div>
+		</div>
+		<div class="neo4jDBInfo ui-draggable ui-draggable-handle"
+			style="display: block; position: absolute; top: 400px; left: 20px; width: 320px; background: rgba(255, 233, 207, 0.8); box-shadow: rgba(116, 112, 112, 0.555) 1px 1px 10px; z-index: 888; cursor: pointer; text-align: left">
+			<div style="margin-bottom: 5px; margin-top: 5px; margin-left: 30%">neo4数据库设置®</div>
+			<div style="width: 100%; margin-bottom: 10px; margin-left: 10px">
+				数据库名称 <select id="dbId" autocomplete="off"
+					style="width: 180px; height: 21px; margin-left: 6px">
+				</select> <input id="dbName" placeholder="数据库名称"
+					style="width: 50%; position: absolute; left: 28%; height: 8%; top: 13%; z-index: 999; border-color: white">
+			</div>
+			<div style="width: 100%; margin-bottom: 10px; margin-left: 10px">
+				数据库地址<input id="host" placeholder="数据库地址 eg 127.0.0.1" type="text"
+					style="width: 180px; height: 21px; margin-left: 10px; border-color: white">
+			</div>
+			<div style="width: 100%; margin-bottom: 10px; margin-left: 10px">
+				数据库端口<input id="port" placeholder="端口 eg 7687" type="number"
+					style="width: 180px; height: 21px; margin-left: 10px; border-color: white">
+			</div>
+			<div style="width: 100%; margin-bottom: 10px; margin-left: 10px">
+				用户名<input id="username" placeholder="用户名" type="text"
+					style="width: 180px; height: 21px; margin-left: 12%; border-color: white">
+			</div>
+			<div style="width: 100%; margin-bottom: 10px; margin-left: 10px">
+				密码<input id="password" placeholder="密码" type="password"
+					style="width: 180px; height: 21px; margin-left: 16%; border-color: white">
+				<a class="el-icon-edit"
+					style="text-decoration: underline; cursor: pointer" title="修改密码"
+					onclick="updatePassword()"></a>
+			</div>
+			<div
+				style="width: 100%; margin-bottom: 10px; margin-left: 10px; height: 30px">
+				<button id="saveDBBtn" class="button green"
+					style="margin-left: 24%; width: 15%; height: 23px"
+					onclick="saveNeo4jBtn()">保存</button>
+				<button id="resetDBBtn" class="button green"
+					style="margin-left: 1%; width: 15%; height: 23px"
+					onclick="resetDBBtn()">重置</button>
+				<button id="deleteDBBtn" class="button green"
+					style="margin-left: 1%; width: 15%; height: 23px"
+					onclick="deleteDBBtn()">删除</button>
+				<font id="saveInfo"
+					style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"></font>
+			</div>
+		</div>
+		<!--search box-->
+		<div class="searchPanel igraph-dockable igraph-draggable"
+			igraph-control-role="SearchBoxCtrl" igraph-dock-position="A:10,20">
+			<div class="searchPanel1">
+				<input class="igraph-searchbox" type="text" size="16"
+					placeholder="搜索节点名称">
+			</div>
+		</div>
+		<!--status bar-->
+		<div class="statusPanel igraph-dockable"
+			igraph-control-role="StatusBarCtrl" igraph-dock-position="C:-100,0">
+			<div class="statusBar"></div>
+		</div>
+		<!--image upload box-->
+		<div class="imageUploadPanel" igraph-control-role="ImageUploadCtrl"></div>
+		<div class="ResultListPanel igraph-dockable igraph-draggable"
+			igraph-control-role="ResultListCtrl" igraph-dock-position="A:10,70"></div>
+	</div>
+	<script type="text/javascript">
+		//var server = "http://127.0.0.1:8081";
+		var server = "/proxy";
+		getAllNeo4jDB();//获取所有数据源信息
+		igraph.i18n.setLanguage("chs");
+		$(".neo4jDBInfo").draggable();
+		//查询数据框绑定回车
+		$(".queryInput").on("keydown", function($event) {
+		if ($event.keyCode == 13) {
+			var cql = $(".queryInput").val();
+			if (cql == "") {
+				alert("查询语句为空");
+				$(".queryInput").val("");
+					return false;
+			} else {
+					getGraphNode(cql);
+					return false;
+			}
+		} else if ($event.keyCode == 38) {
+				//上移
+				HistoryKeyUp();
+		} else if ($event.keyCode == 40) {
+				//下移
+				HistoryKeyDown();
+			}
+		});
+
+		$(".queryInput").on("mousedown", function($event) {
+			getHistoryTop5();
+		});
+		$('.queryInput').on('input propertychange', function() {
+			getHistoryTop5();
+		});
+		var app = new igraph.YjsycbGraph(document.getElementById('graphArea'),
+				"http://127.0.0.1:8080", 'LIGHT');
+		var graphService = app.getGraphService();
+	</script>
+	<!-- 查询neo4j数据 -->
+	<script>
+		function getGraphNode(cql) {
+			var url = server + "/graph/v1/neo4j/query?cql="
+					+ encodeURIComponent(cql);
+			if ($("#dbId").val() != null && $("#dbId").val() != "") {
+				url += "&dbId=" + $("#dbId").val();
+			}
+
+			$.ajax({
+						headers : {
+							'Accept' : 'application/json',
+							'Content-Type' : 'application/json',
+						},
+						type : 'GET',
+						url : url,
+						dataType : 'json',
+						success : function(data, type, request) {
+							app.connectService(igraph.LocalGraph
+									.fromGsonString(JSON.stringify(data)),
+									function() {
+									});
+							addHistory({
+								"cql" : cql,
+								"status" : "1"
+							});
+						},
+						error : function(xmlhttprequest, errorinfo) {
+							console.log(xmlhttprequest.responseJSON.errorMessage);
+							alert(xmlhttprequest.responseJSON.errorMessage);
+							addHistory({
+								"cql" : cql,
+								"status" : "0",
+								"errorMessage" : xmlhttprequest.responseJSON.errorMessage
+							});
+						}
+					});
+		}
+	</script>
+</body>
+
+</html>
