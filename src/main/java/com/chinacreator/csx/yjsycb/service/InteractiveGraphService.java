@@ -118,7 +118,7 @@ public class InteractiveGraphService {
 		neo4jDao.setDataSource("csxneo4j");
 		GraphNodeModel graph = new GraphNodeModel();
 		try {
-			String cql = "match p=(n)-[r*1..1]-(n2) where n.ID='" + id + "' return p";
+			String cql = "match p=(n)-[r*1..1]-(n2) where n.ID='" + id + "' or n.id='" + id + "' return p";
 			List<Object> results = null;
 			if (StringUtils.isBlank(dbId)) {
 				results = neo4jDao.getSession().selectList("com.chinacreator.csx.yjsycb.Neo4jGraphMapper.executeQuery",
@@ -378,8 +378,8 @@ public class InteractiveGraphService {
 			}
 			node.setId(infoJo.getString("ID") == null ? infoJo.getString("id") : infoJo.getString("ID"));
 			// node.setValue(infoJo.getString("1"));
-			node.setInfo(infoJo.getString("name"));
-			node.setLabel(infoJo.getString("name"));
+			node.setInfo(infoJo.getString("name") == null ? node.getId() : infoJo.getString("name"));
+			node.setLabel(infoJo.getString("name") == null ? node.getId() : infoJo.getString("name"));
 			graph.addNode(node);
 		}
 	}
